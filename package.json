@@ -1,0 +1,32 @@
+{
+  "name": "pm_21_11",
+  "version": "1.0.0",
+  "description": "dont know what im doing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Koliasick/pm_21_11.git"
+  },
+  "author": "Koliasick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Koliasick/pm_21_11/issues"
+  },
+  "homepage": "https://github.com/Koliasick/pm_21_11#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.14",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^5.0.0"
+  },
+  "dependencies": {}
+}
