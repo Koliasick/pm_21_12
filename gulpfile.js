@@ -6,6 +6,7 @@ const cssnano = require ("gulp-cssnano");
 const rename = require ("gulp-rename");
 const uglify = require ("gulp-uglify");
 const imagemin = require ("gulp-imagemin");
+const bs = require('browser-sync').create();
 function task_html () {
     return src ( "app/*.html")
         .pipe (dest ( "dist"));
@@ -25,12 +26,12 @@ function task_sass () {
 }
 exports.sass = task_sass;
 function task_scripts () {
-    return src ( "app/js/*.js") //вихідна директорія файлів
-        .pipe (concat ( 'scripts.js')) // конкатенація js-файлів в один
-        .pipe (uglify ()) //стиснення коду
-        .pipe (rename ({suffix: '.min'})) //перейменування файлу з приставкою
+    return src ( "app/js/*.js")
+        .pipe (concat ( 'scripts.js'))
+        .pipe (uglify ())
+        .pipe (rename ({suffix: '.min'}))
         .min
-        .pipe (dest ("dist/js")); // директорія продакшена
+        .pipe (dest ("dist/js"));
 }
 exports.scripts = task_scripts;
 function task_imgs() {
@@ -42,13 +43,25 @@ function task_imgs() {
         }))
         .pipe (dest ("dist/images"))
 }
-exports.imgs = task_imgs
+exports.imgs = task_imgs;
+
+function reload(done)
+{
+    bs.reload();
+    done();
+}
+
 function task_watch() {
-    watch ("app/*.html", task_html);
+    watch ("app/*.html", series(task_html,reload));
     watch ("app/js/*.js", task_scripts);
     watch ("app/sass/*.sass", task_sass);
     watch ("app/images/*.+(jpg|jpeg|png|gif)", task_imgs);
 }
-exports.watch = task_watch
+exports.watch = task_watch;
+
+bs.init({
+    server: "./app"
+});
+
 exports.build = series(task_html, task_sass, task_scripts, task_imgs,
     task_watch);
