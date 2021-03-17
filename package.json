@@ -1,5 +1,5 @@
 {
-  "name": "pm_21_11",
+  "name": "pm_21_12",
   "version": "1.0.0",
   "description": "dont know what im doing",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Koliasick/pm_21_11.git"
+    "url": "git+https://github.com/Koliasick/pm_21_12.git"
   },
   "author": "Koliasick",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Koliasick/pm_21_11/issues"
+    "url": "https://github.com/Koliasick/pm_21_12/issues"
   },
-  "homepage": "https://github.com/Koliasick/pm_21_11#readme",
+  "homepage": "https://github.com/Koliasick/pm_21_12#readme",
   "devDependencies": {
     "browser-sync": "^2.26.14",
     "gulp": "^4.0.2",
