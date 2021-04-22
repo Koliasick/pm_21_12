@@ -35,13 +35,13 @@ function task_scripts () {
 }
 exports.scripts = task_scripts;
 function task_imgs() {
-    return src ( "app/img/*.+(jpg|jpeg|png|gif)")
+    return src ( ".app/img/*.+(jpg|jpeg|png|gif)")
         .pipe (imagemin ({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             interlaced: true
         }))
-        .pipe (dest ("dist/images"))
+        .pipe (dest (".dist/images"))
 }
 exports.imgs = task_imgs;
 
@@ -54,13 +54,13 @@ function reload(done)
 function task_watch() {
     watch ("app/*.html", series(task_html,reload));
     watch ("app/js/*.js", task_scripts);
-    watch ("app/sass/*.sass", task_sass);
+    watch ("app/sass/*.sass", series(task_sass,reload));
     watch ("app/images/*.+(jpg|jpeg|png|gif)", task_imgs);
 }
 exports.watch = task_watch;
 
 bs.init({
-    server: "./app"
+    server: "./dist"
 });
 
 exports.build = series(task_html, task_sass, task_scripts, task_imgs,
