@@ -21,27 +21,28 @@ function task_sass () {
             cascade: false
         }))
         .pipe (cssnano ())
-        .pipe (rename ({suffix: '.min'}))
+        .pipe (rename ({suffix: '.sass.min'}))
         .pipe (dest ( "dist/css"));
 }
 exports.sass = task_sass;
+function task_css () {
+    return src ( "app/css/*.css")
+        .pipe (cssnano ())
+        .pipe (rename ({suffix: '.min'}))
+        .pipe (dest ( "dist/css"));
+}
+exports.css = task_css;
 function task_scripts () {
     return src ( "app/js/*.js")
-        .pipe (concat ( 'scripts.js'))
         .pipe (uglify ())
         .pipe (rename ({suffix: '.min'}))
-        .min
         .pipe (dest ("dist/js"));
 }
 exports.scripts = task_scripts;
 function task_imgs() {
-    return src ( ".app/img/*.+(jpg|jpeg|png|gif)")
-        .pipe (imagemin ({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            interlaced: true
-        }))
-        .pipe (dest (".dist/images"))
+    return src ( "app/images/*.+(jpg|jpeg|png|gif)")
+        .pipe (imagemin ())
+        .pipe (dest ("dist/images"))
 }
 exports.imgs = task_imgs;
 
@@ -53,8 +54,9 @@ function reload(done)
 
 function task_watch() {
     watch ("app/*.html", series(task_html,reload));
-    watch ("app/js/*.js", task_scripts);
+    watch ("app/js/*.js", series(task_scripts,reload));
     watch ("app/sass/*.sass", series(task_sass,reload));
+    watch ("app/css/*.css", series(task_css,reload));
     watch ("app/images/*.+(jpg|jpeg|png|gif)", task_imgs);
 }
 exports.watch = task_watch;
