@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="./css/styles.sass.min.css">
 	<script src="js/chart.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 	<title>LAB</title>
   </head>
@@ -36,7 +38,7 @@
 				</div>
 				<div class="menu_row"><img src="images/charts.png"><pre>  </pre>Charts</div>
 				<div class="menu_row"><img src="images/article.png"><pre>  </pre> Articals</div>
-				<div class="menu_row"><img src="images/calendar.png"><pre>  </pre> Users</div>
+				<div class="menu_row"><img src="images/user.png"><pre>  </pre> Users</div>
 				<div class="menu_row"><img src="images/favorite.png"><pre>  </pre> Favorites</div>
 				<div class="menu_row"><img src="images/speed.png"><pre>  </pre> Speed</div>
 				<div class="menu_row"><img src="images/wrench.png"><pre>  </pre> Settings</div>
@@ -61,7 +63,7 @@
 		    </div>
 	      </div>
 		  <div class="col-md-4 p-2 pb-0 h-auto">
-		    <div id="upper_middle_tile" class="p-3 h-100" style="background-color:red">
+		    <div id="upper_middle_tile" class="p-3 h-100">
 				<img src="images/search.png">
 				<img src="images/line.png">
 				<input type="search" style="background-color: transparent; border: none">
@@ -134,26 +136,62 @@
 	      </div>
 	    </div>
 		<div class="row me-2">
-		  <div class="col-md-8 p-2">
-			<div id="fourth_left">
-	        left tile
+		  <div class="col-md-8 p-2 h-auto">
+			<div id="fourth_left" class="p-3 h-100">
+			<h4 class="ps-5" id="WS">World Sales</h4>
+			<div class="pt-3">
+				<div id="regions_div"></div>
+			</div>
 			</div>
 	      </div>
-		  <div class="col-md-4 p-2">
-			<div id="fourth_right">
-	        right tile
+		  <div class="col-md-4 p-2 h-auto">
+			<div id="fourth_right"class="p-3 h-100">
+	          <h4 class="ps-5">Site report</h4>
+			  <div class="text mt-5">
+			    <div class="text_one">Sales</div>
+  			    <div class="text_two">65%</div>
+			  </div>
+			  <div class="progress_bars">
+			    <div class="progress_bar">
+			      <div id="progress_bar_one_fill"></div>
+			    </div>
+			  </div>
+			  <div class="text mt-4">
+			    <div class="text_one">Revenue</div>
+			    <div class="text_two">88%</div>
+			  </div>
+			  <div class="progress_bars">
+			    <div class="progress_bar">
+				  <div id="progress_bar_two_fill"></div>
+			    </div>
+			  </div>
+			    <div class="text mt-4">
+				  <div class="text_one">New Orders</div>
+				  <div class="text_two">92%</div>
+				</div>
+				<div class="progress_bars">
+				  <div class="progress_bar">
+				      <div id="progress_bar_three_fill"></div>
+				  </div>
+				</div>
+				<div class="text pt-5">
+				  <p id="under_progress_bars">Its long established fact that a reader will be distracted by a readable content of page when looking at its layout.</p>
+				</div>
 			</div>
 	      </div>
 	    </div>
 		<div class="row me-2">
-		  <div class="col-md-4 p-2">
-			<div id="fifth_left">
-	        left tile
+		  <div class="col-md-4 p-2 h-auto">
+			<div id="fifth_left" class="h-100">
+				<h4 class="pt-5 ps-5">Today Sale</h4>
+				<div class="ps-5">400 new</div>
+				<div id="area_graph"></div>
 			</div>
 	      </div>
-		  <div class="col-md-8 p-2">
-			<div id="fifth_right">
-	        right tile
+		  <div class="col-md-8 p-2 h-auto">
+			<div id="fifth_right" class="h-100">
+			  <h4 class="pt-5 ps-5">Users Trend</h4>
+	          <div id="bar_chart"></div>
 			</div>
 	      </div>
 	    </div>
