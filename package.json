@@ -26,6 +26,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.2",
+    "hello-week": "^2.10.3",
     "node-sass": "^5.0.0"
   },
   "dependencies": {
