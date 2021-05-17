@@ -197,8 +197,8 @@ window.addEventListener('load', function () {
     document.getElementById('prev').addEventListener('click',_prev);
     document.getElementById('send').addEventListener('click',_alert);
     document.getElementById('bot_left').addEventListener('click',display_comments);
-    document.getElementById('bot_middle').addEventListener('click',display_articles);
-    document.getElementById('bot_right').addEventListener('click',display_users);
+    document.getElementById('bot_middle').addEventListener('click',get_articals);
+    document.getElementById('bot_right').addEventListener('click',get_users);
     var chart = new ApexCharts(document.querySelector("#area_graph"), options_two);
     var bar_chart = new ApexCharts(document.querySelector("#bar_chart"), options);
     chart.render();
@@ -318,12 +318,43 @@ function display_comments(){
         '    <div class="comment p-3"><img class="avatar" src="images/av2.bmp"><div class="com_text"><div class="ps-1"><sub>by</sub><h6>Deo</h6></div><div class="ps-1">Its long established fact that a reader will be distracted by a readable content of page when looking at its layout.</div></div></div>' +
         '      <div class="comment p-3"><img class="avatar" src="images/av3.bmp"><div class="com_text"><div class="ps-1"><sub>by</sub><h6>Phionne</h6></div><div class="ps-1">Its long established fact that a reader will be distracted by a readable content of page when looking at its layout.</div></div></div>');
 }
-function display_articles(){
+function display_articles(articles){
     bottom_tile.empty();
-    bottom_tile.append('<h6 align="center" class="p-5">No recent articles</h6>');
+    for (let i = 0;i<articles.length;i++){
+         bottom_tile.append('<div class="p-3 article_content"><h6>'+articles[i]['name']+'</h6><p class="p-3">'+articles[i]['content']+'</p></div>');
+    }
 }
-function display_users()
+function display_users(users)
 {
     bottom_tile.empty();
-    bottom_tile.append('<h6 align="center" class="p-5">No new users</h6>');
+    for(let i=0;i<users.length;i++){
+        bottom_tile.append('<div class="comment p-3"><img class="avatar" src="'+(users[i]['avatar'])+'"><div class="com_text"><div class="ps-1"><h6>'+(users[i]['name'])+'</h6></div><div class="ps-1">'+(users[i]['email'])+'</div></div></div>')
+    }
+}
+
+function get_users(){
+$.ajax({
+    url: "https://reqres.in/api/users?page="+(Math.floor(Math.random()*2)+1),
+    type: "GET",
+    success: function(response){
+        let users=[];
+        for (let i = 0;i<response['data'].length;i++){
+            users.push({'email':'','avatar':'','name':''})
+            users[i]['email'] = response['data'][i]['email'];
+            users[i]['avatar'] = response['data'][i]['avatar'];
+            users[i]['name'] = response['data'][i]['first_name']+' '+response['data'][i]['last_name'];
+        }
+        display_users(users);
+    }
+});
+}
+function get_articals(){
+    $.get('data/data.json')
+        .done(function(data){
+            data = data['articals'];
+            display_articles(data);
+        })
+        .fail(function(e){
+            console.log('error');
+        });
 }
