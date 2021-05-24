@@ -1,0 +1,1 @@
+To view webpage just run index.html in dist
